@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Millionaire Core</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-black: #0a0a0f;
+            --dark-black: #050508;
+            --light-black: #121218;
+            --primary-purple: #8a2be2;
+            --accent-purple: #a855f7;
+            --light-purple: #d8b4fe;
+            --neon-glow: rgba(168, 85, 247, 0.4);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-black), #1a1a2e, #0f0f1f);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        .thankyou-container {
+            background: rgba(18, 18, 24, 0.8);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 80px var(--neon-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .success-icon {
+            font-size: 6rem;
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 30px var(--neon-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .thankyou-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, var(--light-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .thankyou-subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .thankyou-message {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-purple));
+            color: white;
+            border: none;
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 15px 40px rgba(138, 43, 226, 0.4),
+                0 0 30px rgba(138, 43, 226, 0.3);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 25px 60px rgba(138, 43, 226, 0.5),
+                0 0 40px rgba(168, 85, 247, 0.5);
+            background: linear-gradient(135deg, var(--accent-purple), #c084fc);
+        }
+
+        .download-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .instructions {
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .instructions h3 {
+            color: var(--light-purple);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .instructions ul {
+            text-align: left;
+            padding-left: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .floating-element {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-purple), transparent);
+            opacity: 0.08;
+            z-index: -1;
+        }
+
+        .float-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            right: -100px;
+        }
+
+        .float-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: -100px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .thankyou-container {
+                padding: 2.5rem;
+            }
+            
+            .thankyou-title {
+                font-size: 2.2rem;
+            }
+            
+            .thankyou-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .thankyou-message {
+                font-size: 1.1rem;
+            }
+            
+            .download-btn {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .thankyou-container {
+                padding: 2rem;
+            }
+            
+            .thankyou-title {
+                font-size: 1.8rem;
+            }
+            
+            .success-icon {
+                font-size: 4rem;
+            }
+            
+            .download-btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
+    
+    <div class="thankyou-container">
+        <div class="success-icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        
+        <h1 class="thankyou-title">CONGRATULATIONS!</h1>
+        
+        <h2 class="thankyou-subtitle">Your Millionaire Journey Begins Now</h2>
+        
+        <p class="thankyou-message">
+            Thank you for purchasing <strong>The Millionaire Blueprint</strong>. 
+            Your commitment to financial freedom is the first step toward building 
+            the life you deserve. Your download is ready.
+        </p>
+        
+        <!-- Direct Download Button -->
+        <a href="cource.pdf" download="Millionaire_Blueprint.pdf" class="download-btn" id="downloadBtn">
+            <i class="fas fa-download"></i>
+            DOWNLOAD YOUR E-BOOK NOW
+        </a>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Important Instructions:</h3>
+            <ul>
+                <li>Click the download button above to get your e-book</li>
+                <li>Save the file to your device for lifetime access</li>
+                <li>Read it within 24 hours for maximum impact</li>
+                <li>Take action on at least ONE strategy today</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2023 Millionaire Core. All rights reserved. | Your success is our mission</p>
+    </div>
+    
+    <script>
+        // Add confetti effect on load
+        window.addEventListener('load', () => {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.top = '0';
+            confetti.style.left = '0';
+            confetti.style.width = '100%';
+            confetti.style.height = '100%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            document.body.appendChild(confetti);
+            
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.style.position = 'absolute';
+                piece.style.width = '10px';
+                piece.style.height = '10px';
+                piece.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                piece.style.borderRadius = '50%';
+                piece.style.top = `${Math.random() * 100}%`;
+                piece.style.left = `${Math.random() * 100}%`;
+                piece.style.opacity = '0.8';
+                piece.style.animation = `fall ${1 + Math.random() * 2}s linear forwards`;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fall {
+                        0% {
+                            transform: translateY(-100px) rotate(0deg);
+                            opacity: 0.8;
+                        }
+                        100% {
+                            transform: translateY(100vh) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                confetti.appendChild(piece);
+            }
+            
+            setTimeout(() => {
+                document.body.removeChild(confetti);
+                document.head.removeChild(style);
+            }, 3000);
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('mousemove', (e) => {
+            const float1 = document.querySelector('.float-1');
+            const float2 = document.querySelector('.float-2');
+            
+            if (float1 && float2) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                float1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+                float2.style.transform = `translate(${x * -20}px, ${y * -20}px)`;
+            }
+        });
+
+        // Add download tracking
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            // Optional: Track downloads
+            console.log('E-book download started: cource.pdf');
+            
+            // Optional: Show loading effect
+            const originalHTML = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> DOWNLOADING...';
+            
+            setTimeout(() => {
+                this.innerHTML = originalHTML;
+                
+                // Optional: Show success message
+                const successMsg = document.createElement('div');
+                successMsg.innerHTML = '<i class="fas fa-check"></i> Download started! Check your downloads folder.';
+                successMsg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: rgba(138, 43, 226, 0.9);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    z-index: 10000;
+                    animation: slideIn 0.5s ease;
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => {
+                    document.body.removeChild(successMsg);
+                    document.head.removeChild(style);
+                }, 5000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

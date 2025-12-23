@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessPreneur - Your Path to Wealth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-black: #0a0a0f;
+            --dark-black: #050508;
+            --light-black: #121218;
+            --primary-purple: #8a2be2;
+            --accent-purple: #a855f7;
+            --light-purple: #d8b4fe;
+            --neon-glow: rgba(168, 85, 247, 0.4);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-black), #1a1a2e, #0f0f1f);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        /* Glass Morphism Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            
+            /* Glass Effect */
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Liquid Glass Effect for navbar (iOS-style) */
+        .navbar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.01) 100%
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 8rem 5% 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Book Display - Glass Panel */
+        .book-display {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .book-cover {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            
+            /* Glass Effect */
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 60px var(--neon-glow),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+        }
+
+        .book-cover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px var(--neon-glow),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Liquid Glass Overlay Effect */
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 40%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            pointer-events: none;
+            z-index: 1;
+            border-radius: 20px;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            mix-blend-mode: luminosity;
+            opacity: 0.9;
+        }
+
+        /* Book Details - Glass Panel */
+        .book-details {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            
+            /* Glass Effect */
+            background: rgba(18, 18, 24, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(138, 43, 226, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Translucent Glass Overlay */
+        .book-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(138, 43, 226, 0.05) 0%,
+                rgba(168, 85, 247, 0.02) 100%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .book-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, var(--light-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .feature i {
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+        }
+
+        .feature span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .price span {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+
+        /* Purchase Button with Glass Effect */
+        .purchase-btn {
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-purple));
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 10px 30px rgba(138, 43, 226, 0.3),
+                0 0 20px rgba(138, 43, 226, 0.2);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .purchase-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(138, 43, 226, 0.4),
+                0 0 30px rgba(168, 85, 247, 0.4);
+            background: linear-gradient(135deg, var(--accent-purple), #c084fc);
+        }
+
+        .purchase-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Button Liquid Glass Effect */
+        .purchase-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .purchase-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Floating Elements for visual interest */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-purple), transparent);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .float-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            right: -100px;
+        }
+
+        .float-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 10%;
+            left: -50px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .book-details, .book-display {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .book-title {
+                font-size: 2.2rem;
+            }
+            
+            .price {
+                font-size: 2.8rem;
+            }
+            
+            .book-details {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+            
+            .price-section {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Success<span>Preneur</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">E-Book</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Floating Background Elements -->
+        <div class="floating-element float-1"></div>
+        <div class="floating-element float-2"></div>
+        
+        <!-- Book Display -->
+        <div class="book-display">
+            <div class="book-cover">
+                <img src="book.png" alt="E-Book Cover">
+            </div>
+        </div>
+        
+        <!-- Book Details -->
+        <div class="book-details">
+            <h1 class="book-title">Success Preneur</h1>
+            <h2 class="book-subtitle">The Ultimate Guide to Wealth Creation</h2>
+            
+            <p class="book-description">
+                Unlock the secrets of the world's most successful millionaires with this comprehensive guide. 
+                Millionaire Core distills decades of financial wisdom into actionable steps that anyone can follow. 
+                From mindset shifts to investment strategies, this e-book provides the blueprint for building 
+                sustainable wealth in the modern economy.
+            </p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-brain"></i>
+                    <span>Wealth Mindset Development</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Investment Strategies</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <span>Passive Income Streams</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Entrepreneurial Principles</span>
+                </div>
+            </div>
+            
+            <div class="price-section">
+                <div class="price">Rs. 49<span>.00</span></div>
+                <button class="purchase-btn">
+                    <i class="fas fa-shopping-cart"></i> Purchase Now
+                </button>
+            </div>
+            
+            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; position: relative; z-index: 1;">
+                <i class="fas fa-shield-alt" style="color: var(--accent-purple); margin-right: 8px;"></i>
+                • Instant Digital Download
+            </p>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2023 Millionaire Core. All rights reserved. | Designed for financial empowerment</p>
+    </footer>
+
+    <script>
+        // Add interactive effects
+        document.querySelector('.purchase-btn').addEventListener('click', function() {
+            // Create a ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size/2;
+            const y = event.clientY - rect.top - size/2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                width: ${size}px;
+                height: ${size}px;
+                top: ${y}px;
+                left: ${x}px;
+                pointer-events: none;
+            `;
+            
+            this.appendChild(ripple);
+            
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+        
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Parallax effect for floating elements
+        window.addEventListener('mousemove', (e) => {
+            const float1 = document.querySelector('.float-1');
+            const float2 = document.querySelector('.float-2');
+            
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            float1.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            float2.style.transform = `translate(${x * -15}px, ${y * -15}px)`;
+        });
+    </script>
+</body>
+</html>

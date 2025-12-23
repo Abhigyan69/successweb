@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Millionaire Core</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-black: #0a0a0f;
+            --dark-black: #050508;
+            --light-black: #121218;
+            --primary-purple: #8a2be2;
+            --accent-purple: #a855f7;
+            --light-purple: #d8b4fe;
+            --neon-glow: rgba(168, 85, 247, 0.4);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-black), #1a1a2e, #0f0f1f);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        /* Glass Morphism Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            
+            /* Glass Effect */
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Liquid Glass Effect for navbar */
+        .navbar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.01) 100%
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Contact Content */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(18, 18, 24, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 80px var(--neon-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin: 2rem;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Translucent Glass Overlay */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(138, 43, 226, 0.05) 0%,
+                rgba(168, 85, 247, 0.02) 100%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Liquid Glass Effect */
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.03),
+                transparent
+            );
+            animation: liquid 8s linear infinite;
+            z-index: 0;
+        }
+
+        .contact-message {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        .email-container {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .email-container:hover {
+            background: rgba(138, 43, 226, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .email-text {
+            font-size: 1.8rem;
+            color: var(--light-purple);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            word-break: break-all;
+        }
+
+        .email-id {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px var(--neon-glow);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .click-hint {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .click-hint i {
+            color: var(--accent-purple);
+            margin-right: 0.5rem;
+        }
+
+        /* Floating Background Elements */
+        .floating-element {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-purple), transparent);
+            opacity: 0.08;
+            z-index: -1;
+        }
+
+        .float-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            right: -100px;
+        }
+
+        .float-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: -100px;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            text-align: center;
+            padding: 1.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(10, 10, 15, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes liquid {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px var(--neon-glow);
+            }
+            100% {
+                text-shadow: 0 0 20px var(--neon-glow), 0 0 30px var(--neon-glow);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .contact-message {
+                font-size: 1.8rem;
+            }
+            
+            .email-text {
+                font-size: 1.4rem;
+            }
+            
+            .email-id {
+                font-size: 1.6rem;
+            }
+            
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-message {
+                font-size: 1.5rem;
+            }
+            
+            .email-id {
+                font-size: 1.3rem;
+                word-break: break-all;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Success<span>Preneur</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html#ebook">E-Book</a></li>
+            <li><a href="#contact" style="color: var(--light-purple);">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
+
+    <!-- Main Contact Content -->
+    <div class="contact-container">
+        <div class="glass-card">
+            <div class="contact-message">
+                E-mail me to contact
+            </div>
+            
+            <div class="email-container" id="emailContainer">
+                <div class="email-text">Email -</div>
+                <div class="email-id">abhigyan.6969.india@gmail.com</div>
+                <div class="click-hint">
+                    <i class="fas fa-mouse-pointer"></i> Click to copy email
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2023 Millionaire Core. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Copy email to clipboard when clicked
+        document.getElementById('emailContainer').addEventListener('click', function() {
+            const email = 'abhigyan.6969.india@gmail.com';
+            
+            // Create a temporary textarea to copy text
+            const textarea = document.createElement('textarea');
+            textarea.value = email;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            // Visual feedback
+            const originalHint = document.querySelector('.click-hint');
+            originalHint.innerHTML = '<i class="fas fa-check"></i> Email copied to clipboard!';
+            originalHint.style.color = 'var(--accent-purple)';
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                originalHint.innerHTML = '<i class="fas fa-mouse-pointer"></i> Click to copy email';
+                originalHint.style.color = 'rgba(255, 255, 255, 0.5)';
+            }, 2000);
+            
+            // Add a subtle animation
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('mousemove', (e) => {
+            const float1 = document.querySelector('.float-1');
+            const float2 = document.querySelector('.float-2');
+            
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            float1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+            float2.style.transform = `translate(${x * -20}px, ${y * -20}px)`;
+        });
+
+        // Auto-select email on hover for easier copying
+        document.getElementById('emailContainer').addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.4)';
+        });
+
+        document.getElementById('emailContainer').addEventListener('mouseleave', function() {
+            this.style.boxShadow = 'none';
+        });
+    </script>
+</body>
+</html>

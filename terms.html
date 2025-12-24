@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Success Preneur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-black: #0a0a0f;
+            --dark-black: #050508;
+            --light-black: #121218;
+            --primary-purple: #8a2be2;
+            --accent-purple: #a855f7;
+            --light-purple: #d8b4fe;
+            --neon-glow: rgba(168, 85, 247, 0.4);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-black), #1a1a2e, #0f0f1f);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.01) 100%
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .terms-container {
+            padding: 8rem 5% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .glass-card {
+            background: rgba(18, 18, 24, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(138, 43, 226, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(138, 43, 226, 0.05) 0%,
+                rgba(168, 85, 247, 0.02) 100%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .terms-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, var(--light-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .last-updated {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Content Sections */
+        .terms-content {
+            position: relative;
+            z-index: 1;
+            counter-reset: section-counter;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--light-purple);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            counter-increment: section-counter;
+        }
+
+        .section h2:before {
+            content: counter(section-counter) ". ";
+            color: var(--accent-purple);
+            font-weight: bold;
+        }
+
+        .section h2 i {
+            color: var(--accent-purple);
+            font-size: 1.5rem;
+            margin-left: auto;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 1.5rem 0 1rem;
+            padding-left: 2rem;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .section ul, .section ol {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 4rem;
+        }
+
+        .section li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .section ul li:before {
+            content: '•';
+            color: var(--accent-purple);
+            position: absolute;
+            left: -1.5rem;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .section ol {
+            counter-reset: item-counter;
+        }
+
+        .section ol li {
+            counter-increment: item-counter;
+        }
+
+        .section ol li:before {
+            content: counter(item-counter) ". ";
+            color: var(--accent-purple);
+            position: absolute;
+            left: -2rem;
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid #ff6b6b;
+            padding: 1.5rem;
+            margin: 1.5rem 2rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+            padding-left: 0;
+        }
+
+        .info-box {
+            background: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid var(--accent-purple);
+            padding: 1.5rem;
+            margin: 1.5rem 2rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+            padding-left: 0;
+        }
+
+        .contact-info {
+            background: rgba(138, 43, 226, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .contact-info h3 {
+            color: var(--light-purple);
+            margin-bottom: 1rem;
+            padding-left: 0;
+        }
+
+        .email-link {
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: var(--light-purple);
+            text-decoration: underline;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-purple), transparent);
+            opacity: 0.08;
+            z-index: -1;
+        }
+
+        .float-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            right: -100px;
+        }
+
+        .float-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: -100px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            color: var(--light-purple);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .terms-container {
+                padding: 7rem 5% 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .terms-container {
+                padding: 6rem 3% 2rem;
+            }
+            
+            .glass-card {
+                padding: 2.5rem;
+            }
+            
+            .terms-title {
+                font-size: 2.2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section p, .section li, .section h3 {
+                padding-left: 1rem;
+            }
+            
+            .section ul, .section ol {
+                padding-left: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+            
+            .glass-card {
+                padding: 2rem;
+            }
+            
+            .terms-title {
+                font-size: 1.8rem;
+            }
+            
+            .section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .section p, .section li {
+                font-size: 1rem;
+            }
+            
+            .warning-box, .info-box {
+                margin: 1.5rem 0;
+            }
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        /* TOC (Table of Contents) */
+        .toc-container {
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .toc-title {
+            color: var(--light-purple);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .toc-list a:hover {
+            background: rgba(138, 43, 226, 0.2);
+            color: var(--light-purple);
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Success<span>Preneur</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#ebook">E-Book</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="#terms" style="color: var(--light-purple);">Terms</a></li>
+        </ul>
+    </nav>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="terms-container">
+        <div class="glass-card">
+            <div class="terms-header">
+                <h1 class="terms-title">Terms & Conditions</h1>
+                <p class="last-updated">Last Updated: December 2023</p>
+                <p>Please read these terms carefully before purchasing our e-book.</p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="toc-container">
+                <h3 class="toc-title"><i class="fas fa-list"></i> Quick Navigation</h3>
+                <ul class="toc-list">
+                    <li><a href="#section1">1. Acceptance of Terms</a></li>
+                    <li><a href="#section2">2. Product Description</a></li>
+                    <li><a href="#section3">3. Payment & Pricing</a></li>
+                    <li><a href="#section4">4. License & Usage Rights</a></li>
+                    <li><a href="#section5">5. Refund Policy</a></li>
+                    <li><a href="#section6">6. User Responsibilities</a></li>
+                    <li><a href="#section7">7. Intellectual Property</a></li>
+                    <li><a href="#section8">8. Disclaimer</a></li>
+                    <li><a href="#section9">9. Limitation of Liability</a></li>
+                    <li><a href="#section10">10. Termination</a></li>
+                    <li><a href="#section11">11. Changes to Terms</a></li>
+                    <li><a href="#section12">12. Contact Information</a></li>
+                </ul>
+            </div>
+
+            <div class="terms-content">
+                <!-- Section 1 -->
+                <div class="section" id="section1">
+                    <h2><i class="fas fa-check-circle"></i> Acceptance of Terms</h2>
+                    <p>By accessing, browsing, or purchasing from Millionaire Core (the "Website"), you acknowledge that you have read, understood, and agree to be bound by these Terms & Conditions ("Terms").</p>
+                    <p>If you do not agree to these Terms, you must not use our Website or purchase our products.</p>
+                    <div class="warning-box">
+                        <p><strong>Important:</strong> These Terms constitute a legally binding agreement between you and Millionaire Core.</p>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="section" id="section2">
+                    <h2><i class="fas fa-book"></i> Product Description</h2>
+                    <p>Millionaire Core sells digital e-books ("Products") that provide educational content on wealth building and entrepreneurship.</p>
+                    <h3>2.1 Product Details</h3>
+                    <ul>
+                        <li><strong>Product Name:</strong> The Millionaire Blueprint</li>
+                        <li><strong>Format:</strong> PDF (Portable Document Format)</li>
+                        <li><strong>Delivery:</strong> Instant digital download upon successful payment</li>
+                        <li><strong>Language:</strong> English</li>
+                        <li><strong>File Size:</strong> Approximately 2-5 MB</li>
+                    </ul>
+                    <h3>2.2 What You Receive</h3>
+                    <p>Upon purchase, you will receive:</p>
+                    <ol>
+                        <li>One PDF file of the complete e-book</li>
+                        <li>Unlimited personal access to the file</li>
+                        <li>Lifetime updates (if applicable)</li>
+                        <li>Access to any bonus materials included</li>
+                    </ol>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="section" id="section3">
+                    <h2><i class="fas fa-credit-card"></i> Payment & Pricing</h2>
+                    <h3>3.1 Pricing</h3>
+                    <p>All prices are listed in US Dollars (USD) or Indian Rupees (INR) and are subject to change without notice. The current price for "The Millionaire Blueprint" is $29.99 (or equivalent in local currency).</p>
+                    
+                    <h3>3.2 Payment Methods</h3>
+                    <p>We accept payments through:</p>
+                    <ul>
+                        <li>Credit/Debit Cards (Visa, MasterCard, American Express)</li>
+                        <li>PayPal</li>
+                        <li>UPI (for Indian customers)</li>
+                        <li>Net Banking (for Indian customers)</li>
+                    </ul>
+                    
+                    <h3>3.3 Payment Processing</h3>
+                    <p>All payments are processed securely through third-party payment processors (Payhip, Instamojo, etc.). We do not store your credit card information.</p>
+                    
+                    <div class="info-box">
+                        <p><strong>Note:</strong> Your payment may appear as "Millionaire Core" or the payment processor's name on your bank statement.</p>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="section" id="section4">
+                    <h2><i class="fas fa-copyright"></i> License & Usage Rights</h2>
+                    <h3>4.1 Grant of License</h3>
+                    <p>Upon purchase, we grant you a <strong>non-exclusive, non-transferable, single-user license</strong> to:</p>
+                    <ul>
+                        <li>Download and store the e-book on your personal devices</li>
+                        <li>Read and use the content for personal education</li>
+                        <li>Print one copy for personal use</li>
+                    </ul>
+                    
+                    <h3>4.2 Restrictions</h3>
+                    <p>You are <strong>NOT permitted</strong> to:</p>
+                    <ul>
+                        <li>Share, distribute, or resell the e-book</li>
+                        <li>Upload to file-sharing websites or platforms</li>
+                        <li>Use the content for commercial purposes without permission</li>
+                        <li>Modify, adapt, or create derivative works</li>
+                        <li>Teach the content in paid workshops or courses</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <p><strong>Violation:</strong> Any unauthorized distribution will result in immediate termination of your license and may lead to legal action.</p>
+                    </div>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="section" id="section5">
+                    <h2><i class="fas fa-exchange-alt"></i> Refund Policy</h2>
+                    <h3>5.1 Digital Product Nature</h3>
+                    <p>Due to the digital nature of our products (instant download), we generally <strong>do not offer refunds</strong> once the e-book has been downloaded.</p>
+                    
+                    <h3>5.2 Exceptions</h3>
+                    <p>Refunds may be considered in the following cases:</p>
+                    <ul>
+                        <li>Technical issues preventing download (we will first attempt to resolve)</li>
+                        <li>Duplicate purchase (accidental double charge)</li>
+                        <li>Product not as described (must be reported within 24 hours)</li>
+                    </ul>
+                    
+                    <h3>5.3 Refund Process</h3>
+                    <p>To request a refund:</p>
+                    <ol>
+                        <li>Email us at abhigyan.6969.india@gmail.com within 24 hours of purchase</li>
+                        <li>Include your order number and reason for refund</li>
+                        <li>Do not download the e-book if requesting a refund</li>
+                        <li>We will respond within 48 hours</li>
+                    </ol>
+                    
+                    <div class="info-box">
+                        <p><strong>30-Day Money-Back Guarantee:</strong> We offer a 30-day satisfaction guarantee. If you're unsatisfied with the content quality, contact us for a refund.</p>
+                    </div>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="section" id="section6">
+                    <h2><i class="fas fa-user-shield"></i> User Responsibilities</h2>
+                    <h3>6.1 Age Requirement</h3>
+                    <p>You must be at least <strong>18 years old</strong> to purchase our products. If you are under 18, you need parental consent.</p>
+                    
+                    <h3>6.2 Account Security</h3>
+                    <p>If you create an account with us, you are responsible for:</p>
+                    <ul>
+                        <li>Maintaining the confidentiality of your login credentials</li>
+                        <li>All activities under your account</li>
+                        <li>Keeping your email address updated</li>
+                    </ul>
+                    
+                    <h3>6.3 Proper Use</h3>
+                    <p>You agree to use our products:</p>
+                    <ul>
+                        <li>For lawful purposes only</li>
+                        <li>Without violating any laws or regulations</li>
+                        <li>Without infringing on others' rights</li>
+                        <li>Without attempting to circumvent security measures</li>
+                    </ul>
+                </div>
+
+                <!-- Section 7 -->
+                <div class="section" id="section7">
+                    <h2><i class="fas fa-gem"></i> Intellectual Property</h2>
+                    <h3>7.1 Ownership</h3>
+                    <p>All content in "The Millionaire Blueprint" e-book is the intellectual property of Millionaire Core. This includes:</p>
+                    <ul>
+                        <li>Text content and written material</li>
+                        <li>Graphic designs and layouts</li>
+                        <li>Concept frameworks and methodologies</li>
+                        <li>Worksheets and templates</li>
+                    </ul>
+                    
+                    <h3>7.2 Copyright Notice</h3>
+                    <p>© 2023 Millionaire Core. All rights reserved. No part of this e-book may be reproduced, distributed, or transmitted in any form without prior written permission.</p>
+                    
+                    <h3>7.3 Trademarks</h3>
+                    <p>"Millionaire Core" and "The Millionaire Blueprint" are trademarks of our company. You may not use these marks without permission.</p>
+                </div>
+
+                <!-- Section 8 -->
+                <div class="section" id="section8">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Disclaimer</h2>
+                    <h3>8.1 Educational Purpose Only</h3>
+                    <p>The content in our e-book is for <strong>educational and informational purposes only</strong>. It is not financial, legal, or professional advice.</p>
+                    
+                    <h3>8.2 No Guarantees</h3>
+                    <p>We make no guarantees about:</p>
+                    <ul>
+                        <li>Specific financial results or income</li>
+                        <li>Success in business ventures</li>
+                        <li>Accuracy of market predictions</li>
+                        <li>Outcomes from following the strategies</li>
+                    </ul>
+                    
+                    <h3>8.3 Risk Acknowledgment</h3>
+                    <p>You acknowledge that:</p>
+                    <ul>
+                        <li>All investments carry risk</li>
+                        <li>Business success depends on multiple factors</li>
+                        <li>You should consult professionals before making financial decisions</li>
+                        <li>Past results don't guarantee future performance</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <p><strong>Important:</strong> You are solely responsible for your financial decisions and results. We are not liable for any losses or damages.</p>
+                    </div>
+                </div>
+
+                <!-- Section 9 -->
+                <div class="section" id="section9">
+                    <h2><i class="fas fa-balance-scale"></i> Limitation of Liability</h2>
+                    <p>To the maximum extent permitted by law, Millionaire Core shall not be liable for:</p>
+                    <ul>
+                        <li>Any direct, indirect, incidental, or consequential damages</li>
+                        <li>Loss of profits, revenue, or data</li>
+                        <li>Business interruption or loss of opportunities</li>
+                        <li>Damages resulting from use or inability to use our products</li>
+                    </ul>
+                    
+                    <h3>9.1 Maximum Liability</h3>
+                    <p>Our maximum liability to you shall not exceed the amount you paid for the e-book.</p>
+                    
+                    <h3>9.2 Jurisdictional Limitations</h3>
+                    <p>Some jurisdictions do not allow limitations on implied warranties or liability for incidental damages. Our liability will be limited to the greatest extent permitted by law.</p>
+                </div>
+
+                <!-- Section 10 -->
+                <div class="section" id="section10">
+                    <h2><i class="fas fa-ban"></i> Termination</h2>
+                    <h3>10.1 By You</h3>
+                    <p>You may stop using our products at any time, but the license terms still apply to any downloaded content.</p>
+                    
+                    <h3>10.2 By Us</h3>
+                    <p>We may terminate your access or license if you:</p>
+                    <ul>
+                        <li>Violate these Terms</li>
+                        <li>Engage in unauthorized sharing or distribution</li>
+                        <li>Use the content for illegal purposes</li>
+                        <li>Initiate a chargeback without contacting us first</li>
+                    </ul>
+                    
+                    <h3>10.3 Effects of Termination</h3>
+                    <p>Upon termination:</p>
+                    <ul>
+                        <li>Your license is revoked</li>
+                        <li>You must delete all copies of the e-book</li>
+                        <li>No refunds will be provided (except as required by law)</li>
+                    </ul>
+                </div>
+
+                <!-- Section 11 -->
+                <div class="section" id="section11">
+                    <h2><i class="fas fa-sync-alt"></i> Changes to Terms</h2>
+                    <p>We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting on this page.</p>
+                    
+                    <h3>11.1 Notification</h3>
+                    <p>For significant changes, we may:</p>
+                    <ul>
+                        <li>Notify you by email (if you provided one)</li>
+                        <li>Post a notice on our website</li>
+                        <li>Update the "Last Updated" date</li>
+                    </ul>
+                    
+                    <h3>11.2 Your Responsibility</h3>
+                    <p>It is your responsibility to review these Terms periodically. Continued use after changes constitutes acceptance of the modified Terms.</p>
+                </div>
+
+                <!-- Section 12 -->
+                <div class="section" id="section12">
+                    <h2><i class="fas fa-envelope"></i> Contact Information</h2>
+                    <p>For any questions about these Terms, please contact us:</p>
+                    
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <p><a href="mailto:abhigyan.6969.india@gmail.com" class="email-link">abhigyan.6969.india@gmail.com</a></p>
+                        
+                        <h3>Response Time</h3>
+                        <p>We typically respond to inquiries within 24-48 hours on business days (Monday-Friday).</p>
+                        
+                        <h3>Legal Notices</h3>
+                        <p>Official legal notices should be sent via email with "LEGAL NOTICE" in the subject line.</p>
+                    </div>
+                </div>
+
+                <!-- Final Agreement -->
+                <div class="info-box">
+                    <p><strong>Agreement:</strong> By purchasing "The Millionaire Blueprint," you acknowledge that you have read, understood, and agree to be bound by these Terms & Conditions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2023 Millionaire Core. All rights reserved.</p>
+        <p style="margin-top: 10px;">
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms & Conditions</a> | 
+            <a href="index.html">Home</a>
+        </p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">These terms are effective as of December 2023</p>
+    </footer>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('mousemove', (e) => {
+            const float1 = document.querySelector('.float-1');
+            const float2 = document.querySelector('.float-2');
+            
+            if (float1 && float2) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                float1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+                float2.style.transform = `translate(${x * -20}px, ${y * -20}px)`;
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Auto-update year in footer
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearElements = document.querySelectorAll('.footer p');
+            yearElements.forEach(element => {
+                element.innerHTML = element.innerHTML.replace('2023', new Date().getFullYear());
+            });
+        });
+
+        // Highlight current section in TOC
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const tocLinks = document.querySelectorAll('.toc-list a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= (sectionTop - 150)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            tocLinks.forEach(link => {
+                link.style.background = 'transparent';
+                link.style.color = 'rgba(255, 255, 255, 0.8)';
+                
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.style.background = 'rgba(138, 43, 226, 0.3)';
+                    link.style.color = 'var(--light-purple)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

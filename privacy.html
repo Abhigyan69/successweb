@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - SuccessPreneur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-black: #0a0a0f;
+            --dark-black: #050508;
+            --light-black: #121218;
+            --primary-purple: #8a2be2;
+            --accent-purple: #a855f7;
+            --light-purple: #d8b4fe;
+            --neon-glow: rgba(168, 85, 247, 0.4);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-black), #1a1a2e, #0f0f1f);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.01) 100%
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-purple);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .privacy-container {
+            padding: 8rem 5% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .glass-card {
+            background: rgba(18, 18, 24, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(138, 43, 226, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(138, 43, 226, 0.05) 0%,
+                rgba(168, 85, 247, 0.02) 100%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .privacy-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, var(--light-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .last-updated {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Content Sections */
+        .privacy-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--light-purple);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 i {
+            color: var(--accent-purple);
+            font-size: 1.5rem;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .section li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .section li:before {
+            content: '•';
+            color: var(--accent-purple);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .highlight-box {
+            background: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid var(--accent-purple);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info {
+            background: rgba(138, 43, 226, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .contact-info h3 {
+            color: var(--light-purple);
+            margin-bottom: 1rem;
+        }
+
+        .email-link {
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: var(--light-purple);
+            text-decoration: underline;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-purple), transparent);
+            opacity: 0.08;
+            z-index: -1;
+        }
+
+        .float-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            right: -100px;
+        }
+
+        .float-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: -100px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .privacy-container {
+                padding: 7rem 5% 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .privacy-container {
+                padding: 6rem 3% 2rem;
+            }
+            
+            .glass-card {
+                padding: 2.5rem;
+            }
+            
+            .privacy-title {
+                font-size: 2.2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+            
+            .glass-card {
+                padding: 2rem;
+            }
+            
+            .privacy-title {
+                font-size: 1.8rem;
+            }
+            
+            .section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .section p, .section li {
+                font-size: 1rem;
+            }
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Success<span>Preneur</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#ebook">E-Book</a></li>
+            <li><a href="#contact" style="color: var(--light-purple);">Privacy Policy</a></li>
+        </ul>
+    </nav>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="privacy-container">
+        <div class="glass-card">
+            <div class="privacy-header">
+                <h1 class="privacy-title">Privacy Policy</h1>
+                <p class="last-updated">Last Updated: December 2023</p>
+            </div>
+
+            <div class="privacy-content">
+                <!-- Introduction -->
+                <div class="section">
+                    <h2><i class="fas fa-shield-alt"></i> Introduction</h2>
+                    <p>Welcome to Success Preneur. We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy outlines how we collect, use, and protect your information when you use our website and services.</p>
+                    <p>By accessing our website and purchasing our products, you agree to the collection and use of information in accordance with this policy.</p>
+                </div>
+
+                <!-- Information We Collect -->
+                <div class="section">
+                    <h2><i class="fas fa-database"></i> Information We Collect</h2>
+                    <p>We collect the following types of information:</p>
+                    
+                    <h3>1. Personal Information</h3>
+                    <ul>
+                        <li>Name and email address when you make a purchase</li>
+                        <li>Payment information (processed securely by third-party payment processors)</li>
+                        <li>Contact information if you reach out to us for support</li>
+                    </ul>
+
+                    <h3>2. Automatically Collected Information</h3>
+                    <ul>
+                        <li>IP address and browser type</li>
+                        <li>Pages visited and time spent on our site</li>
+                        <li>Referring website (if applicable)</li>
+                        <li>Device information (operating system, screen resolution)</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p><strong>Note:</strong> We do not collect sensitive personal information such as government IDs, biometric data, or financial information beyond what is necessary for payment processing.</p>
+                    </div>
+                </div>
+
+                <!-- How We Use Your Information -->
+                <div class="section">
+                    <h2><i class="fas fa-cogs"></i> How We Use Your Information</h2>
+                    <p>We use the collected information for the following purposes:</p>
+                    <ul>
+                        <li>To process your purchases and deliver digital products</li>
+                        <li>To provide customer support and respond to inquiries</li>
+                        <li>To send important updates about your purchase</li>
+                        <li>To improve our website and services</li>
+                        <li>To prevent fraud and ensure security</li>
+                        <li>To comply with legal obligations</li>
+                    </ul>
+                </div>
+
+                <!-- Payment Processing -->
+                <div class="section">
+                    <h2><i class="fas fa-credit-card"></i> Payment Processing</h2>
+                    <p>All payments are processed through secure third-party payment processors. We do not store or have access to your complete payment details. The payment processors handle this information in accordance with their own privacy policies and security standards.</p>
+                    <p>Our current payment processors include:</p>
+                    <ul>
+                        <li><strong>Payhip</strong> - For international card payments</li>
+                        <li><strong>Instamojo</strong> - For Indian payments (UPI, cards, net banking)</li>
+                    </ul>
+                    <p>You should review their privacy policies to understand how they handle your data.</p>
+                </div>
+
+                <!-- Data Security -->
+                <div class="section">
+                    <h2><i class="fas fa-lock"></i> Data Security</h2>
+                    <p>We implement reasonable security measures to protect your personal information:</p>
+                    <ul>
+                        <li>SSL encryption on our website</li>
+                        <li>Secure servers with limited access</li>
+                        <li>Regular security assessments</li>
+                        <li>Minimal data collection - we only collect what's necessary</li>
+                    </ul>
+                    <p>However, no method of transmission over the internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee absolute security.</p>
+                </div>
+
+                <!-- Third-Party Services -->
+                <div class="section">
+                    <h2><i class="fas fa-external-link-alt"></i> Third-Party Services</h2>
+                    <p>We use the following third-party services that may collect information:</p>
+                    <ul>
+                        <li><strong>Payment Processors</strong> (Payhip, Instamojo) - For payment processing</li>
+                        <li><strong>Email Service Providers</strong> - For sending purchase confirmations and updates</li>
+                        <li><strong>Analytics Tools</strong> - To understand website usage (anonymous data)</li>
+                        <li><strong>Hosting Services</strong> - To host our website and files</li>
+                    </ul>
+                    <p>These third parties have their own privacy policies governing how they use your information.</p>
+                </div>
+
+                <!-- Your Rights -->
+                <div class="section">
+                    <h2><i class="fas fa-user-check"></i> Your Rights</h2>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access the personal information we hold about you</li>
+                        <li>Request correction of inaccurate information</li>
+                        <li>Request deletion of your personal information</li>
+                        <li>Opt-out of marketing communications</li>
+                        <li>Request a copy of your data</li>
+                    </ul>
+                    <p>To exercise these rights, please contact us using the information below.</p>
+                </div>
+
+                <!-- Children's Privacy -->
+                <div class="section">
+                    <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                    <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children under 18.</p>
+                    <p>If you are a parent or guardian and you believe your child has provided us with personal information, please contact us immediately. If we become aware that we have collected personal information from a child under 18 without verification of parental consent, we will take steps to remove that information from our servers.</p>
+                </div>
+
+                <!-- Cookies -->
+                <div class="section">
+                    <h2><i class="fas fa-cookie-bite"></i> Cookies</h2>
+                    <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier.</p>
+                    <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our website.</p>
+                </div>
+
+                <!-- Changes to This Policy -->
+                <div class="section">
+                    <h2><i class="fas fa-sync-alt"></i> Changes to This Policy</h2>
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+                    <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="section">
+                    <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+                    <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                    
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <p><a href="mailto:abhigyan.6969.india@gmail.com" class="email-link">abhigyan.6969.india@gmail.com</a></p>
+                        
+                        <h3>Response Time</h3>
+                        <p>We typically respond to privacy-related inquiries within 48 hours on business days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2023 Millionaire Core. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a></p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">This privacy policy is effective as of December 2023</p>
+    </footer>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('mousemove', (e) => {
+            const float1 = document.querySelector('.float-1');
+            const float2 = document.querySelector('.float-2');
+            
+            if (float1 && float2) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                float1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+                float2.style.transform = `translate(${x * -20}px, ${y * -20}px)`;
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Auto-update year in footer
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.querySelector('.footer p');
+            if (yearSpan) {
+                yearSpan.innerHTML = yearSpan.innerHTML.replace('2023', new Date().getFullYear());
+            }
+        });
+    </script>
+</body>
+</html>
